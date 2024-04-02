@@ -7,6 +7,47 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="203*"/>
+            <ColumnDefinition Width="597*"/>
+        </Grid.ColumnDefinitions>
+        <Frame x:Name="frNav" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
+        <StackPanel Width="140" HorizontalAlignment="Left"
+                    Background="#EFD3FF">
+            <TextBlock
+                    Width="100"
+                    Margin="10 10"
+                    HorizontalAlignment="Left"
+                    FontSize="22" 
+                    FontFamily="Century Gothic">
+                <Hyperlink Click="Hyperlink_Click_1" 
+                           Foreground="#FF8D75" FontWeight="Black">
+                    <TextBlock Text="Dish"></TextBlock>
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock
+                    Width="120"
+                    Margin="10 10"
+                    HorizontalAlignment="Left"
+                    FontSize="22"
+                    FontFamily="Century Gothic">
+                <Hyperlink Click="Hyperlink_Click_2" 
+                            Foreground="#FF8D75" FontWeight="Black">
+                    <TextBlock Text="Ingredients"></TextBlock>
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock
+                    Width="100"
+                    Margin="10 10"
+                    HorizontalAlignment="Left"
+                    FontSize="22"
+                    FontFamily="Century Gothic">
+                <Hyperlink Click="Hyperlink_Click_3"
+                           Foreground="#FF8D75" FontWeight="Black">
+                    <TextBlock Text="Orders"></TextBlock>
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
         
     </Grid>
 </Window>
