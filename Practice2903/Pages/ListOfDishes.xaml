@@ -9,6 +9,27 @@
       Title="ListOfDishes">
 
     <Grid Background="#EFD3FF">
-       
+        <StackPanel Margin="140 0 0 0" HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Menu" FontSize="40"
+                   FontWeight="Bold" Foreground="#FF234E"
+                   FontFamily="Century Gothic" />
+            <ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        
     </Grid>
 </Page>
