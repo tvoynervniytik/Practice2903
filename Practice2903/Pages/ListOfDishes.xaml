@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Practice2903.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1000"
       Title="ListOfDishes">
 
     <Grid Background="#EFD3FF">
@@ -61,28 +61,30 @@
                         Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" ValueChanged="priceSl_ValueChanged"/>
                 </StackPanel>
             </StackPanel>
-            <ListView ItemsSource="{Binding dishes}" Height="250" x:Name="dishesSlv">
-                <ListView.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Width="200">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                            <Image Source="{Binding Image}" Width="50"
-                                                   HorizontalAlignment="Center"/>
-                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <TextBlock Text="1 portion = "/>
-                                                <TextBlock Text="{Binding FinalPriceInCents}"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
+            <ListView ItemsSource="{Binding dishes}" Height="350" x:Name="dishesSlv">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical"  
+                                        Width="250" 
+                                        Height="100"                                    
+                                        Cursor="Hand">
+
+                            <Image Source="{Binding Image}" Width="50"
+                                                       HorizontalAlignment="Center"/>
+
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding FinalPriceInCents}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+               
             </ListView>
         </StackPanel>
         
