@@ -50,13 +50,15 @@ namespace Practice2903.Pages
         private void categoryCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var cat = categoryCb.SelectedItem as Category;
-            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.CategoryId == cat.Id).ToList());
+            string name = nameTb.Text;
+            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name) && i.CategoryId == cat.Id).ToList());
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var cat = categoryCb.SelectedItem as Category;
             string name = nameTb.Text;
-            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name)).ToList());
+            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name) && i.CategoryId == cat.Id).ToList());
         }
         private void Hyperlink_Click_1(object sender, RoutedEventArgs e)
         {

@@ -61,10 +61,10 @@
                         Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" ValueChanged="priceSl_ValueChanged"/>
                 </StackPanel>
             </StackPanel>
-            <ListView ItemsSource="{Binding dishes}" Height="350" x:Name="dishesSlv">
+            <ListView ItemsSource="{Binding dishes}" Height="350" Width="600" x:Name="dishesSlv">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="3"/>
+                        <UniformGrid Columns="2"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
