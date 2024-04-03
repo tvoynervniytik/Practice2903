@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="203*"/>
+            <ColumnDefinition Width="120*"/>
             <ColumnDefinition Width="597*"/>
         </Grid.ColumnDefinitions>
         <Frame x:Name="frNav" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>

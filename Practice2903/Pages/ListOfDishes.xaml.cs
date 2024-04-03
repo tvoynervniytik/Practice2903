@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Practice2903.DB;
 
 namespace Practice2903.Pages
 {
@@ -20,9 +21,57 @@ namespace Practice2903.Pages
     /// </summary>
     public partial class ListOfDishes : Page
     {
+        public static List<Dish> dishes { get; set; }
+        public static List<Category> categories { get; set; }
+        //public static List<CookingStage> cookingStages { get; set; }
+        //public static List<IngredientOfStage> ingredientOfStages { get; set; }
+        //public static List<Ingredient> ingredients { get; set; }
+        public static List<AvaibleIng> avaibleIngs { get; set; }
         public ListOfDishes()
         {
             InitializeComponent();
+            dishes = new List<Dish>(DBConnection.practice.Dish.ToList());
+            categories = new List<Category>(DBConnection.practice.Category.ToList());
+            //cookingStages = new List<CookingStage>(DBConnection.practice.CookingStage.ToList());
+            //ingredientOfStages = new List<IngredientOfStage>(DBConnection.practice.IngredientOfStage.ToList());
+            //ingredients = new List<Ingredient>(DBConnection.practice.Ingredient.ToList());
+            avaibleIngs = new List<AvaibleIng>(DBConnection.practice.AvaibleIng.Where(i => i.Quantity > i.AvailableCount).ToList());
+
+            this.DataContext = this;
+        }
+
+        private void priceSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int a = (int)priceSl.Value;
+            priceminTb.Text = priceSl.Value.ToString();
+            pricemaxTb.Text = priceSl.Value.ToString();
+        }
+
+        private void categoryCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cat = categoryCb.SelectedItem as Category;
+            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.CategoryId == cat.Id).ToList());
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string name = nameTb.Text;
+            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name)).ToList());
+        }
+        private void Hyperlink_Click_1(object sender, RoutedEventArgs e)
+        {
+            int count = avaibleIngs.Count; //кол-во элементов в Таблице sql
+            int[] IdesDishes = new int[count]; //массив размера количества - массив с айдишниками блюд, где кол-ва ингредиентов не хватает
+            int index = 0;
+            while (index < count)
+            {
+                IdesDishes[index] = avaibleIngs[index].DishId;
+                index++;
+            }
+             if ((bool)isChB.IsChecked)
+               dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => IdesDishes.Contains(i.Id) == false).ToList());
+            else
+                dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.ToList());
         }
     }
 }

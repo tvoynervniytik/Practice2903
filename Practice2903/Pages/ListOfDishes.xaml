@@ -9,19 +9,74 @@
       Title="ListOfDishes">
 
     <Grid Background="#EFD3FF">
-        <StackPanel Margin="140 0 0 0" HorizontalAlignment="Center"
+        <StackPanel Margin="120 0 0 0" HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <TextBlock Text="Menu" FontSize="40"
-                   FontWeight="Bold" Foreground="#FF234E"
-                   FontFamily="Century Gothic" />
-            <ListView>
+            <TextBlock Text="List of dishes" FontSize="40"
+                       FontWeight="Bold" Foreground="#FF234E"
+                       FontFamily="Century Gothic"/>
+            <StackPanel Orientation="Horizontal" Margin="0 10" HorizontalAlignment="Left">
+                <TextBlock Text="Category" FontSize="22" 
+                           FontFamily="Century Gothic"/>
+                <ComboBox x:Name="categoryCb" 
+                          ItemsSource="{Binding categories}"
+                          FontSize="22" 
+                          FontFamily="Century Gothic"
+                          Width="150" 
+                          Margin="10 0" SelectionChanged="categoryCb_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Name" FontSize="22" 
+                           FontFamily="Century Gothic"/>
+                <TextBox Width="150" Margin="10 0 0 0" x:Name="nameTb"
+                         FontSize="22" FontFamily="Century Gothic" TextChanged="TextBox_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 10">
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <CheckBox VerticalAlignment="Center" x:Name="isChB"
+                              Click="Hyperlink_Click_1"/>
+                    <TextBlock FontFamily="Century Gothic" 
+                               Margin="5 0 0 0" FontSize="13">
+                        show only dishes <LineBreak/>
+                        with available ingredients 
+                    </TextBlock>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock Text="Price" FontFamily="Century Gothic" Margin="15 0 10 0" FontSize="15"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="priceminTb" Margin="0 0 5 0"/>
+                            <TextBlock x:Name="pricemaxTb"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Slider Width="260" x:Name="priceSl"
+                        Value="50" Minimum="220" Maximum="4400" 
+                        SmallChange="1" LargeChange="10"
+                        TickPlacement="BottomRight" TickFrequency="10"
+                        IsSnapToTickEnabled="True" AutoToolTipPlacement="TopLeft" 
+                        Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" ValueChanged="priceSl_ValueChanged"/>
+                </StackPanel>
+            </StackPanel>
+            <ListView ItemsSource="{Binding dishes}" Height="250" x:Name="dishesSlv">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn>
+                            <GridViewColumn Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock></TextBlock>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                            <Image Source="{Binding Image}" Width="50"
+                                                   HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Text="1 portion = "/>
+                                                <TextBlock Text="{Binding FinalPriceInCents}"/>
+                                            </StackPanel>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
