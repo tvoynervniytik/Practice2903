@@ -5,41 +5,59 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Practice2903.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1000"
+      d:DesignHeight="832" d:DesignWidth="1280"
       Title="ListOfDishes">
 
     <Grid Background="#EFD3FF">
         <StackPanel Margin="120 0 0 0" HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <TextBlock Text="List of dishes" FontSize="40"
+            <TextBlock Text="List of dishes" FontSize="60"
                        FontWeight="Bold" Foreground="#FF234E"
-                       FontFamily="Century Gothic"/>
+                       FontFamily="Century Gothic"
+                       Margin="0 0 0 30"/>
             <StackPanel Orientation="Horizontal" Margin="0 10" HorizontalAlignment="Left">
-                <TextBlock Text="Category" FontSize="22" 
+                <TextBlock Text="Category" FontSize="32" 
+                           FontWeight="DemiBold"
                            FontFamily="Century Gothic"/>
                 <ComboBox x:Name="categoryCb" 
                           ItemsSource="{Binding categories}"
-                          FontSize="22" 
+                          FontSize="32" 
                           FontFamily="Century Gothic"
-                          Width="150" 
+                          Width="220" 
                           Margin="10 0" SelectionChanged="categoryCb_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Name}" 
+                                       TextWrapping="Wrap"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBlock Text="Name" FontSize="22" 
+                <Button x:Name="categoryBtn" 
+                        Content="×" 
+                        FontSize="40"
+                        FontWeight="Bold"
+                        Background="#FF234E"
+                        Foreground="White"
+                        Width="70"
+                        Height="70"
+                        Margin="0 0 25 0" Click="categoryBtn_Click"/>
+                <TextBlock Text="Name" FontSize="32" 
+                           FontWeight="DemiBold"
                            FontFamily="Century Gothic"/>
-                <TextBox Width="150" Margin="10 0 0 0" x:Name="nameTb"
-                         FontSize="22" FontFamily="Century Gothic" TextChanged="TextBox_TextChanged"/>
+                <TextBox Width="220" 
+                         Margin="10 0 0 0" 
+                         x:Name="nameTb"
+                         FontSize="28" 
+                         FontFamily="Century Gothic" 
+                         TextChanged="TextBox_TextChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0 10">
                 <StackPanel Orientation="Horizontal" Margin="10">
-                    <CheckBox VerticalAlignment="Center" x:Name="isChB"
+                    <CheckBox VerticalAlignment="Center" 
+                              x:Name="isChB"
                               Click="Hyperlink_Click_1"/>
                     <TextBlock FontFamily="Century Gothic" 
-                               Margin="5 0 0 0" FontSize="13">
+                               Margin="5 0 0 0" FontSize="22">
                         show only dishes <LineBreak/>
                         with available ingredients 
                     </TextBlock>
@@ -47,9 +65,13 @@
                 
                 <StackPanel Orientation="Horizontal">
                     <StackPanel>
-                        <TextBlock Text="Price" FontFamily="Century Gothic" Margin="15 0 10 0" FontSize="15"/>
+                        <TextBlock Text="Price" 
+                                   FontFamily="Century Gothic" 
+                                   Margin="15 0 10 0" 
+                                   FontSize="20"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock x:Name="priceminTb" Margin="0 0 5 0"/>
+                            <TextBlock x:Name="priceminTb" 
+                                       Margin="0 0 5 0"/>
                             <TextBlock x:Name="pricemaxTb"/>
                         </StackPanel>
                     </StackPanel>
@@ -61,30 +83,52 @@
                         Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" ValueChanged="priceSl_ValueChanged"/>
                 </StackPanel>
             </StackPanel>
-            <ListView ItemsSource="{Binding dishes}" Height="350" Width="600" x:Name="dishesSlv">
+            <ListView ItemsSource="{Binding dishes}" 
+                      Height="350" 
+                      Width="800" 
+                      x:Name="dishesSlv"
+                      VerticalAlignment="Bottom">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="2"/>
+                        <UniformGrid Columns="3"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical"  
-                                        Width="250" 
-                                        Height="100"                                    
-                                        Cursor="Hand">
-
-                            <Image Source="{Binding Image}" Width="50"
-                                                       HorizontalAlignment="Center"/>
-
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding FinalPriceInCents}" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Vertical"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Width="248" 
+                                    Height="200"                                    
+                                    Cursor="Hand">
+                            <StackPanel.Background>
+                                <ImageBrush ImageSource="{Binding Image}"/>
+                            </StackPanel.Background>
+                            <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom">
+                                <StackPanel Height="120" Width="248" 
+                                            VerticalAlignment="Bottom">
+                                    <StackPanel.Background>
+                                        <SolidColorBrush Color="AliceBlue"
+                                                         Opacity="0.5"/>
+                                    </StackPanel.Background>
+                                    <TextBlock Text="{Binding Name}" 
+                                               FontFamily="Century Gothic" 
+                                               FontSize="20"
+                                               VerticalAlignment="Bottom"
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding FinalPriceInCents}" 
+                                               FontFamily="Century Gothic" 
+                                               FontSize="22"
+                                               FontWeight="DemiBold"
+                                               VerticalAlignment="Bottom"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-               
             </ListView>
         </StackPanel>
         

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practice2903"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="MainWindow" Height="832" Width="1280">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120*"/>
@@ -18,7 +18,7 @@
                     Width="100"
                     Margin="10 10"
                     HorizontalAlignment="Left"
-                    FontSize="22" 
+                    FontSize="25" 
                     FontFamily="Century Gothic">
                 <Hyperlink Click="Hyperlink_Click_1" 
                            Foreground="#FF8D75" FontWeight="Black">
@@ -29,7 +29,7 @@
                     Width="120"
                     Margin="10 10"
                     HorizontalAlignment="Left"
-                    FontSize="22"
+                    FontSize="25"
                     FontFamily="Century Gothic">
                 <Hyperlink Click="Hyperlink_Click_2" 
                             Foreground="#FF8D75" FontWeight="Black">
@@ -40,7 +40,7 @@
                     Width="100"
                     Margin="10 10"
                     HorizontalAlignment="Left"
-                    FontSize="22"
+                    FontSize="25"
                     FontFamily="Century Gothic">
                 <Hyperlink Click="Hyperlink_Click_3"
                            Foreground="#FF8D75" FontWeight="Black">

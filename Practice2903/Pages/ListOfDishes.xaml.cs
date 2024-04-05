@@ -23,6 +23,7 @@ namespace Practice2903.Pages
     {
         public static List<Dish> dishes { get; set; }
         public static List<Category> categories { get; set; }
+        //ненужные таб
         //public static List<CookingStage> cookingStages { get; set; }
         //public static List<IngredientOfStage> ingredientOfStages { get; set; }
         //public static List<Ingredient> ingredients { get; set; }
@@ -51,7 +52,10 @@ namespace Practice2903.Pages
         {
             var cat = categoryCb.SelectedItem as Category;
             string name = nameTb.Text;
-            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name) && i.CategoryId == cat.Id).ToList());
+            if (categoryCb.SelectedItem == null)
+                dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name)).ToList());
+            else
+                dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name) && i.CategoryId == cat.Id).ToList());
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -74,6 +78,12 @@ namespace Practice2903.Pages
                dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => IdesDishes.Contains(i.Id) == false).ToList());
             else
                 dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.ToList());
+        }
+
+        private void categoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.ToList());
+            categoryCb.SelectedItem = null;
         }
     }
 }
