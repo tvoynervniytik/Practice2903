@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище PracticeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище PracticeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Practice.dbo.AvaibleIng" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="AvaibleIng">
@@ -73,12 +73,12 @@
         </EntityType>
         <EntityType Name="IngredientOfStage">
           <Key>
-            <PropertyRef Name="CookingStageId" />
-            <PropertyRef Name="IngredientId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="CookingStageId" Type="int" Nullable="false" />
-          <Property Name="IngredientId" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CookingStageId" Type="int" />
+          <Property Name="IngredientId" Type="int" />
+          <Property Name="Quantity" Type="float" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -155,8 +155,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IngredientOfStage_CookingStage1">
-          <End Role="CookingStage" Type="Self.CookingStage" Multiplicity="1" />
+        <Association Name="FK_IngredientOfStage_CookingStage">
+          <End Role="CookingStage" Type="Self.CookingStage" Multiplicity="0..1" />
           <End Role="IngredientOfStage" Type="Self.IngredientOfStage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CookingStage">
@@ -168,7 +168,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_IngredientOfStage_Ingredient">
-          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="0..1" />
           <End Role="IngredientOfStage" Type="Self.IngredientOfStage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingredient">
@@ -248,7 +248,7 @@
             <End Role="Unit" EntitySet="Unit" />
             <End Role="Ingredient" EntitySet="Ingredient" />
           </AssociationSet>
-          <AssociationSet Name="FK_IngredientOfStage_CookingStage1" Association="Self.FK_IngredientOfStage_CookingStage1">
+          <AssociationSet Name="FK_IngredientOfStage_CookingStage" Association="Self.FK_IngredientOfStage_CookingStage">
             <End Role="CookingStage" EntitySet="CookingStage" />
             <End Role="IngredientOfStage" EntitySet="IngredientOfStage" />
           </AssociationSet>
@@ -269,7 +269,8 @@
             <End Role="OrderedDish" EntitySet="OrderedDish" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PracticeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -300,7 +301,7 @@
           <Property Name="ProcessDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TimeInMinutes" Type="Int32" />
           <NavigationProperty Name="Dish" Relationship="Self.FK_CookingStage_Dish1" FromRole="CookingStage" ToRole="Dish" />
-          <NavigationProperty Name="IngredientOfStage" Relationship="Self.FK_IngredientOfStage_CookingStage1" FromRole="CookingStage" ToRole="IngredientOfStage" />
+          <NavigationProperty Name="IngredientOfStage" Relationship="Self.FK_IngredientOfStage_CookingStage" FromRole="CookingStage" ToRole="IngredientOfStage" />
         </EntityType>
         <EntityType Name="Dish">
           <Key>
@@ -332,13 +333,13 @@
         </EntityType>
         <EntityType Name="IngredientOfStage">
           <Key>
-            <PropertyRef Name="CookingStageId" />
-            <PropertyRef Name="IngredientId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="CookingStageId" Type="Int32" Nullable="false" />
-          <Property Name="IngredientId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Double" Nullable="false" />
-          <NavigationProperty Name="CookingStage" Relationship="Self.FK_IngredientOfStage_CookingStage1" FromRole="IngredientOfStage" ToRole="CookingStage" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CookingStageId" Type="Int32" />
+          <Property Name="IngredientId" Type="Int32" />
+          <Property Name="Quantity" Type="Double" />
+          <NavigationProperty Name="CookingStage" Relationship="Self.FK_IngredientOfStage_CookingStage" FromRole="IngredientOfStage" ToRole="CookingStage" />
           <NavigationProperty Name="Ingredient" Relationship="Self.FK_IngredientOfStage_Ingredient" FromRole="IngredientOfStage" ToRole="Ingredient" />
         </EntityType>
         <EntityType Name="Order">
@@ -385,6 +386,22 @@
           <Property Name="ShortName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ingredient" Relationship="Self.FK_Ingredient_Unit" FromRole="Unit" ToRole="Ingredient" />
         </EntityType>
+        <EntityType Name="AvaibleIng">
+          <Key>
+            <PropertyRef Name="DishId" />
+            <PropertyRef Name="DishName" />
+            <PropertyRef Name="IngId" />
+            <PropertyRef Name="IngName" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="AvailableCount" />
+          </Key>
+          <Property Name="DishId" Type="Int32" Nullable="false" />
+          <Property Name="DishName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IngId" Type="Int32" Nullable="false" />
+          <Property Name="IngName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="AvailableCount" Type="Double" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Dish_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
@@ -421,8 +438,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IngredientOfStage_CookingStage1">
-          <End Role="CookingStage" Type="Self.CookingStage" Multiplicity="1" />
+        <Association Name="FK_IngredientOfStage_CookingStage">
+          <End Role="CookingStage" Type="Self.CookingStage" Multiplicity="0..1" />
           <End Role="IngredientOfStage" Type="Self.IngredientOfStage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CookingStage">
@@ -458,7 +475,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_IngredientOfStage_Ingredient">
-          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="0..1" />
           <End Role="IngredientOfStage" Type="Self.IngredientOfStage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingredient">
@@ -492,6 +509,7 @@
           <EntitySet Name="OrderedDish" EntityType="Self.OrderedDish" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Unit" EntityType="Self.Unit" />
+          <EntitySet Name="AvaibleIng" EntityType="Self.AvaibleIng" />
           <AssociationSet Name="FK_Dish_Category" Association="Self.FK_Dish_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Dish" EntitySet="Dish" />
@@ -504,7 +522,7 @@
             <End Role="Dish" EntitySet="Dish" />
             <End Role="CookingStage" EntitySet="CookingStage" />
           </AssociationSet>
-          <AssociationSet Name="FK_IngredientOfStage_CookingStage1" Association="Self.FK_IngredientOfStage_CookingStage1">
+          <AssociationSet Name="FK_IngredientOfStage_CookingStage" Association="Self.FK_IngredientOfStage_CookingStage">
             <End Role="CookingStage" EntitySet="CookingStage" />
             <End Role="IngredientOfStage" EntitySet="IngredientOfStage" />
           </AssociationSet>
@@ -524,24 +542,7 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderedDish" EntitySet="OrderedDish" />
           </AssociationSet>
-          <EntitySet Name="AvaibleIng" EntityType="PracticeModel.AvaibleIng" />
         </EntityContainer>
-        <EntityType Name="AvaibleIng">
-          <Key>
-            <PropertyRef Name="DishId" />
-            <PropertyRef Name="DishName" />
-            <PropertyRef Name="IngId" />
-            <PropertyRef Name="IngName" />
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="AvailableCount" />
-          </Key>
-          <Property Name="DishId" Type="Int32" Nullable="false" />
-          <Property Name="DishName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IngId" Type="Int32" Nullable="false" />
-          <Property Name="IngName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="Double" Nullable="false" />
-          <Property Name="AvailableCount" Type="Double" Nullable="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -604,6 +605,7 @@
           <EntitySetMapping Name="IngredientOfStage">
             <EntityTypeMapping TypeName="PracticeModel.IngredientOfStage">
               <MappingFragment StoreEntitySet="IngredientOfStage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CookingStageId" ColumnName="CookingStageId" />
                 <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
@@ -655,12 +657,12 @@
           <EntitySetMapping Name="AvaibleIng">
             <EntityTypeMapping TypeName="PracticeModel.AvaibleIng">
               <MappingFragment StoreEntitySet="AvaibleIng">
-                <ScalarProperty Name="AvailableCount" ColumnName="AvailableCount" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="IngName" ColumnName="IngName" />
-                <ScalarProperty Name="IngId" ColumnName="IngId" />
-                <ScalarProperty Name="DishName" ColumnName="DishName" />
                 <ScalarProperty Name="DishId" ColumnName="DishId" />
+                <ScalarProperty Name="DishName" ColumnName="DishName" />
+                <ScalarProperty Name="IngId" ColumnName="IngId" />
+                <ScalarProperty Name="IngName" ColumnName="IngName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="AvailableCount" ColumnName="AvailableCount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

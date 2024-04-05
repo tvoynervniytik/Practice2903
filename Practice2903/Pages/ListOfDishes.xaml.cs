@@ -85,5 +85,10 @@ namespace Practice2903.Pages
             dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.ToList());
             categoryCb.SelectedItem = null;
         }
+
+        private void dishesSlv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        { 
+            NavigationService.Navigate(new RecipesPage(dishesSlv.SelectedItem as Dish));
+        }
     }
 }

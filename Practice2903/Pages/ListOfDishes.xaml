@@ -87,7 +87,7 @@
                       Height="350" 
                       Width="800" 
                       x:Name="dishesSlv"
-                      VerticalAlignment="Bottom">
+                      VerticalAlignment="Bottom" SelectionChanged="dishesSlv_SelectionChanged">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="3"/>

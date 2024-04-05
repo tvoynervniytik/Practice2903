@@ -1,0 +1,104 @@
+﻿<Page x:Class="Practice2903.Pages.RecipesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Practice2903.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="832" d:DesignWidth="1280"
+      Title="RecipesPage">
+
+    <Grid Background="#EFD3FF">
+        <StackPanel Margin="120 0 0 0" HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Recipe for " FontSize="60"
+                           FontWeight="Bold" Foreground="#FF234E"
+                           FontFamily="Century Gothic"/>
+                <TextBlock x:Name="nameTb" FontSize="60"
+                           FontWeight="Bold" Foreground="#FF234E"
+                           FontFamily="Century Gothic"
+                           TextWrapping="Wrap"
+                           Margin="0 0 0 30"/>
+            </StackPanel>
+            <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="15">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Category: " 
+                                   FontFamily="Century Gothic" 
+                                   FontSize="22"/>
+                        <TextBlock FontFamily="Century Gothic" 
+                                   FontSize="22"
+                                   x:Name="categoryTb"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Cooking time: " 
+                                   FontFamily="Century Gothic" 
+                                   FontSize="22"/>
+                        <TextBlock FontFamily="Century Gothic" 
+                                   FontSize="22"
+                                   x:Name="cookingTb"/>
+                        <TextBlock FontFamily="Century Gothic" 
+                                   FontSize="22"
+                                   Text=" min"/>
+                    </StackPanel>
+                </StackPanel> 
+                <StackPanel Margin="15">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Servings: " 
+                                   FontFamily="Century Gothic" 
+                                   FontSize="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Total cost: " 
+                                   FontFamily="Century Gothic" 
+                                   FontSize="22"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Short description: "
+                           FontFamily="Century Gothic" 
+                           FontSize="22"/>
+                    <TextBlock x:Name="descTb"
+                             FontFamily="Century Gothic" 
+                             TextWrapping="Wrap"
+                               
+                             Height="150" Width="700"
+                             FontSize="18"/>
+            </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Ingredients" 
+                           FontFamily="Century Gothic" 
+                           FontSize="22"
+                           HorizontalAlignment="Center"/>
+                    <ListView ItemsSource="{Binding ingredientOfStages}">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+                <StackPanel Margin="20">
+                    <TextBlock Text="Ingredients" 
+                           FontFamily="Century Gothic" 
+                           FontSize="22"
+                           HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

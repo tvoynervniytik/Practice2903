@@ -8,11 +8,11 @@
         Title="MainWindow" Height="832" Width="1280">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120*"/>
+            <ColumnDefinition Width="140*"/>
             <ColumnDefinition Width="597*"/>
         </Grid.ColumnDefinitions>
         <Frame x:Name="frNav" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
-        <StackPanel Width="140" HorizontalAlignment="Left"
+        <StackPanel Width="165" HorizontalAlignment="Left"
                     Background="#EFD3FF">
             <TextBlock
                     Width="100"
@@ -26,7 +26,7 @@
                 </Hyperlink>
             </TextBlock>
             <TextBlock
-                    Width="120"
+                    Width="140"
                     Margin="10 10"
                     HorizontalAlignment="Left"
                     FontSize="25"

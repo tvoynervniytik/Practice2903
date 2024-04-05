@@ -4,26 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0e99b529bc7d49beb1eb3aff7c2241f2" Name="Diagram1">
+      <Diagram DiagramId="dfac200a8a364bcda43c726e26b8cffe" Name="Diagram1">
         <EntityTypeShape EntityType="PracticeModel.Category" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PracticeModel.Client" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PracticeModel.CookingStage" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PracticeModel.Dish" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PracticeModel.Ingredient" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PracticeModel.IngredientOfStage" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticeModel.IngredientOfStage" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PracticeModel.Order" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="PracticeModel.OrderedDish" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PracticeModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="PracticeModel.Unit" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticeModel.AvaibleIng" Width="1.5" PointX="7.75" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="PracticeModel.FK_Dish_Category" ManuallyRouted="false" />
         <AssociationConnector Association="PracticeModel.FK_Order_Client" ManuallyRouted="false" />
         <AssociationConnector Association="PracticeModel.FK_CookingStage_Dish1" ManuallyRouted="false" />
-        <AssociationConnector Association="PracticeModel.FK_IngredientOfStage_CookingStage1" ManuallyRouted="false" />
+        <AssociationConnector Association="PracticeModel.FK_IngredientOfStage_CookingStage" ManuallyRouted="false" />
         <AssociationConnector Association="PracticeModel.FK_OrderedDish_Dish" ManuallyRouted="false" />
         <AssociationConnector Association="PracticeModel.FK_Ingredient_Unit" ManuallyRouted="false" />
         <AssociationConnector Association="PracticeModel.FK_IngredientOfStage_Ingredient" ManuallyRouted="false" />
         <AssociationConnector Association="PracticeModel.FK_OrderedDish_Order" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="PracticeModel.AvaibleIng" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

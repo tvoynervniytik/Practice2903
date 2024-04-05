@@ -14,9 +14,10 @@ namespace Practice2903.DB
     
     public partial class IngredientOfStage
     {
-        public int CookingStageId { get; set; }
-        public int IngredientId { get; set; }
-        public double Quantity { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> CookingStageId { get; set; }
+        public Nullable<int> IngredientId { get; set; }
+        public Nullable<double> Quantity { get; set; }
     
         public virtual CookingStage CookingStage { get; set; }
         public virtual Ingredient Ingredient { get; set; }
