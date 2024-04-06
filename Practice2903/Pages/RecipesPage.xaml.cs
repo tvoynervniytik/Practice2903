@@ -36,24 +36,24 @@ namespace Practice2903.Pages
             int[] cookingStagesIdes = new int [cookingStages.Count];
             int index = 0;
             int count = cookingStages.Count;
-            while (index < count)
-            {
-                cookingStagesIdes[index] = cookingStages[index].Id;
-                MessageBox.Show(cookingStagesIdes[index].ToString());
-                index++;
-            }
-            ingredientOfStages = new List<IngredientOfStage>(DBConnection.practice.IngredientOfStage.Where(i => cookingStagesIdes.Contains((int)i.CookingStageId)).ToList());
-            int[,] ingredientsIdes = new int[ingredientOfStages.Count, ingredientOfStages.Count];
-            index = 0;
-            count = ingredientOfStages.Count;
-            while (index < count)
-            {
-                ingredientsIdes[index, index] = (int)ingredientOfStages[index].IngredientId;
-                MessageBox.Show(ingredientsIdes[index].ToString());
-                index++;
-            }
-            ingredients = new List<Ingredient>(DBConnection.practice.Ingredient.Where(i => ingredientsIdes.Contains(i.Id)).ToList());
-            units = new List<Unit>(DBConnection.practice.Unit.ToList());
+            //while (index < count)
+            //{
+            //    cookingStagesIdes[index] = cookingStages[index].Id;
+            //    MessageBox.Show(cookingStagesIdes[index].ToString());
+            //    index++;
+            //}
+            //ingredientOfStages = new List<IngredientOfStage>(DBConnection.practice.IngredientOfStage.Where(i => cookingStagesIdes.Contains((int)i.CookingStageId)).ToList());
+            //int[,] ingredientsIdes = new int[ingredientOfStages.Count, ingredientOfStages.Count];
+            //index = 0;
+            //count = ingredientOfStages.Count;
+            //while (index < count)
+            //{
+            //    //ingredientsIdes[index, index] = (int)ingredientOfStages[index].IngredientId;
+            //    //MessageBox.Show(ingredientsIdes[index].ToString());
+            //    //index++;
+            //}
+            //ingredients = new List<Ingredient>(DBConnection.practice.Ingredient.Where(i => ingredientsIdes.Contains(i.Id)).ToList());
+            //units = new List<Unit>(DBConnection.practice.Unit.ToList());
 
             nameTb.Text = dish.Name;
             var cat = categories.FirstOrDefault(i => i.Id == dish.CategoryId);

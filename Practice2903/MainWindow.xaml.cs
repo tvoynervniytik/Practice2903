@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Practice2903.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -39,6 +40,11 @@ namespace Practice2903
         private void Hyperlink_Click_3(object sender, RoutedEventArgs e)
         {
             frNav.NavigationService.Navigate(new Pages.ListOfOrders());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            frNav.NavigationService.Navigate(new MainPage());
         }
     }
 }

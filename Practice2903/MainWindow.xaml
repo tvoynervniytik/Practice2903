@@ -47,6 +47,11 @@
                     <TextBlock Text="Orders"></TextBlock>
                 </Hyperlink>
             </TextBlock>
+            <Button Content="← Main Page" Margin="0 560 0 0"
+                    Background="#FF8D75" FontWeight="Black"
+                    FontSize="25" BorderThickness="0"
+                    FontFamily="Century Gothic"
+                    Foreground="White" Click="Button_Click"/>
         </StackPanel>
         
     </Grid>
