@@ -74,8 +74,6 @@ namespace Practice2903.Pages
 
             this.DataContext = this;
 
-            //LISTVIEW
-
         }
 
         private void plusBt_Click(object sender, RoutedEventArgs e)
@@ -86,8 +84,13 @@ namespace Practice2903.Pages
 
         private void minBt_Click(object sender, RoutedEventArgs e)
         {
-            if (int.Parse(servTb.Text) == 0) MessageBox.Show("Нельзя уж меньше нуля, норм ты нет?.....");
+            if (int.Parse(servTb.Text) == 0) MessageBox.Show("Нельзя уж меньше нуля, норм ты нет?.....", "Ответь, вот ты норм или нет", MessageBoxButton.OK, MessageBoxImage.Question);
             else { servTb.Text = (int.Parse(servTb.Text) - 1).ToString(); costTb.Text = (dishe.FinalPriceInCents * int.Parse(servTb.Text)).ToString(); }
             }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

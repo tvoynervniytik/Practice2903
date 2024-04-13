@@ -108,6 +108,8 @@
                            HorizontalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
+            <Button x:Name="backBtn" Width="126" Height="70" 
+                    Content="← Back" FontSize="25" FontWeight="Bold" Click="backBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
