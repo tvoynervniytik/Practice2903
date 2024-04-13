@@ -27,9 +27,11 @@ namespace Practice2903.Pages
         public static List<IngredientOfStage> ingredientOfStages { get; set; }
         public static List<Ingredient> ingredients { get; set; }
         public static List<Unit> units { get; set; }
+        private static Dish dishe { get; set; }
         public RecipesPage(Dish dish)
         {
             InitializeComponent();
+            dishe = dish;
             dishes = new List<Dish>(DBConnection.practice.Dish.ToList());
             categories = new List<Category>(DBConnection.practice.Category.ToList());
             cookingStages = new List<CookingStage>(DBConnection.practice.CookingStage.Where(i => i.DishId == dish.Id).ToList());
@@ -67,11 +69,25 @@ namespace Practice2903.Pages
             }
             cookingTb.Text = time.ToString();
             descTb.Text = dish.Description;
+            servTb.Text = "1"; 
+            costTb.Text = dish.FinalPriceInCents.ToString();
 
             this.DataContext = this;
 
             //LISTVIEW
 
         }
+
+        private void plusBt_Click(object sender, RoutedEventArgs e)
+        {
+            servTb.Text = (int.Parse(servTb.Text) + 1).ToString();
+            costTb.Text = (dishe.FinalPriceInCents * int.Parse(servTb.Text)).ToString();
+        }
+
+        private void minBt_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.Parse(servTb.Text) == 0) MessageBox.Show("Нельзя уж меньше нуля, норм ты нет?.....");
+            else { servTb.Text = (int.Parse(servTb.Text) - 1).ToString(); costTb.Text = (dishe.FinalPriceInCents * int.Parse(servTb.Text)).ToString(); }
+            }
     }
 }

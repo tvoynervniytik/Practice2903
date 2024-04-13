@@ -49,12 +49,21 @@
                         <TextBlock Text="Servings: " 
                                    FontFamily="Century Gothic" 
                                    FontSize="22"/>
-                    </StackPanel>
+                            <Button x:Name="minBt" Height="60" Width="40"
+                                    Content="-" FontSize="36" Click="minBt_Click" />
+                            <TextBlock x:Name="servTb" Text="4"
+                                       FontSize="28"
+                                       Height="60" Width="60" 
+                                       TextAlignment="Center"/>
+                            <Button x:Name="plusBt" Height="60" Width="40"
+                                    Content="+" FontSize="36" Click="plusBt_Click"/>
+                        </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <TextBlock Text="Total cost: " 
                                    FontFamily="Century Gothic" 
                                    FontSize="22"/>
-                    </StackPanel>
+                            <TextBlock x:Name="costTb" FontSize="28"/>
+                        </StackPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
