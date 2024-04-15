@@ -106,7 +106,7 @@
                            FontFamily="Century Gothic" 
                            FontSize="22"
                            HorizontalAlignment="Center"/>
-                    <ListView>
+                    <ListView ItemsSource="{Binding cookingStages}">
                         
                     </ListView>
                 </StackPanel>

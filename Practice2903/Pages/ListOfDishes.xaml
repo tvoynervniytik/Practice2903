@@ -64,23 +64,41 @@
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel>
+                  
                         <TextBlock Text="Price" 
                                    FontFamily="Century Gothic" 
                                    Margin="15 0 10 0" 
                                    FontSize="20"/>
+                        
+                    <StackPanel>
                         <StackPanel Orientation="Horizontal">
+                            <Slider Width="260" x:Name="priceSl"
+                                    Value="220" 
+                                    Minimum="220" Maximum="4400" 
+                                    SmallChange="1" LargeChange="10"
+                                    TickPlacement="BottomRight" 
+                                    TickFrequency="10"
+                                    IsSnapToTickEnabled="True" 
+                                    AutoToolTipPlacement="TopLeft" 
+                                    Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" ValueChanged="priceSl_ValueChanged"/>
                             <TextBlock x:Name="priceminTb" 
                                        Margin="0 0 5 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+
+                            <Slider Width="260" x:Name="priceMSl"
+                                    Value="4400" 
+                                    Minimum="220" Maximum="4400" 
+                                    SmallChange="1" LargeChange="10"
+                                    TickPlacement="TopLeft" 
+                                    TickFrequency="10"   
+                                    IsSnapToTickEnabled="True" 
+                                    AutoToolTipPlacement="TopLeft" 
+                                    Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" 
+                                    ValueChanged="priceMSl_ValueChanged"/>
                             <TextBlock x:Name="pricemaxTb"/>
                         </StackPanel>
                     </StackPanel>
-                    <Slider Width="260" x:Name="priceSl"
-                        Value="50" Minimum="220" Maximum="4400" 
-                        SmallChange="1" LargeChange="10"
-                        TickPlacement="BottomRight" TickFrequency="10"
-                        IsSnapToTickEnabled="True" AutoToolTipPlacement="TopLeft" 
-                        Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" ValueChanged="priceSl_ValueChanged"/>
                 </StackPanel>
             </StackPanel>
             <ListView ItemsSource="{Binding dishes}" 

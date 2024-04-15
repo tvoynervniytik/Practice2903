@@ -21,7 +21,7 @@
                        Text="Total available ingredients for the amount ($): "/>
                 <TextBlock x:Name="costTb"/>
             </StackPanel>
-            <ListView>
+            <ListView ItemsSource="{Binding ingredients}">
                 
             </ListView>
         </StackPanel>

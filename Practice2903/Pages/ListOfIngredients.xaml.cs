@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Practice2903.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace Practice2903.Pages
     /// </summary>
     public partial class ListOfIngredients : Page
     {
+        public static List<Ingredient> ingredients {  get; set; }
         public ListOfIngredients()
         {
             InitializeComponent();
+            ingredients = new List<Ingredient>(DBConnection.practice.Ingredient.ToList());
+            this.DataContext = this;
         }
     }
 }

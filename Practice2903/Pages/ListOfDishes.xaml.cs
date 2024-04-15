@@ -40,14 +40,6 @@ namespace Practice2903.Pages
 
             this.DataContext = this;
         }
-
-        private void priceSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            int a = (int)priceSl.Value;
-            priceminTb.Text = priceSl.Value.ToString();
-            pricemaxTb.Text = priceSl.Value.ToString();
-        }
-
         private void categoryCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var cat = categoryCb.SelectedItem as Category;
@@ -89,6 +81,16 @@ namespace Practice2903.Pages
         private void dishesSlv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         { 
             NavigationService.Navigate(new RecipesPage(dishesSlv.SelectedItem as Dish));
+        }
+        private void priceSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int a = (int)priceSl.Value;
+            priceminTb.Text = priceSl.Value.ToString();
+        }
+        private void priceMSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int a = (int)priceMSl.Value;
+            pricemaxTb.Text = priceMSl.Value.ToString();
         }
     }
 }
