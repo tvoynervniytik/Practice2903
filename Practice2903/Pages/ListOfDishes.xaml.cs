@@ -28,6 +28,8 @@ namespace Practice2903.Pages
         //public static List<IngredientOfStage> ingredientOfStages { get; set; }
         //public static List<Ingredient> ingredients { get; set; }
         public static List<AvaibleIng> avaibleIngs { get; set; }
+        private int priceMin;
+        private int priceMax;
         public ListOfDishes()
         {
             InitializeComponent();
@@ -37,6 +39,11 @@ namespace Practice2903.Pages
             //ingredientOfStages = new List<IngredientOfStage>(DBConnection.practice.IngredientOfStage.ToList());
             //ingredients = new List<Ingredient>(DBConnection.practice.Ingredient.ToList());
             avaibleIngs = new List<AvaibleIng>(DBConnection.practice.AvaibleIng.Where(i => i.Quantity > i.AvailableCount).ToList());
+            priceMin = 220;
+            priceMax = 4440;
+
+            pricemaxTb.Text = priceMax.ToString();
+            priceminTb.Text = priceMin.ToString();
 
             this.DataContext = this;
         }
@@ -84,14 +91,51 @@ namespace Practice2903.Pages
         }
         private void priceSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            int a = (int)priceSl.Value;
-            MessageBox.Show(a.ToString());
-            //priceminTb.Text = a.ToString();
+           
+            if (dishesSlv != null)
+            {
+
+                if (priceMin >= priceMax)
+                {
+                    priceSl.Value = priceMin;
+                    priceminTb.Text = priceMin.ToString();
+                    MessageBox.Show("minno");
+                    
+                }
+                else
+                {
+                    priceMin = (int)priceSl.Value;
+                    priceminTb.Text = priceMin.ToString();
+                    var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
+                                                                    && i.FinalPriceInCents <= priceMax).ToList());
+                    dishesSlv.ItemsSource = sources;
+                }
+                
+            }
         }
         private void priceMSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //int a = (int)priceMSl.Value;
-            //pricemaxTb.Text = a.ToString();
+           
+            if (dishesSlv != null)
+            {
+                
+                if (priceMax <= priceMin )
+                {
+                    priceMSl.Value = priceMax;
+                    pricemaxTb.Text = priceMax.ToString();
+                    MessageBox.Show("no");
+                }
+                else
+                {
+                    priceMax = (int)priceMSl.Value;
+                    pricemaxTb.Text = priceMax.ToString();
+                    var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
+                                                                && i.FinalPriceInCents <= priceMax).ToList());
+                    dishesSlv.ItemsSource = sources;
+                }
+                
+               
+            }
         }
         
     }

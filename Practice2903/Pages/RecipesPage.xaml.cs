@@ -29,6 +29,7 @@ namespace Practice2903.Pages
         public static List<Ingredient> ingredients { get; set; }
         public static List<Unit> units { get; set; }
         private static Dish dishe { get; set; }
+        
         int counter = 1;
         public RecipesPage(Dish dish)
         {
@@ -38,6 +39,7 @@ namespace Practice2903.Pages
             categories = new List<Category>(DBConnection.practice.Category.ToList());
             cookingStages = new List<CookingStage>(DBConnection.practice.CookingStage.Where(i => i.DishId == dish.Id).ToList());
             int[] cookingStagesIdes = new int [cookingStages.Count];
+            Refresh();
             int index = 0;
             int count = cookingStages.Count;
             //while (index < count)
