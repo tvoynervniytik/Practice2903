@@ -81,7 +81,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="20">
-                    <TextBlock Text="Ingredients" 
+                    <TextBlock Text="Ingredients:" 
                            FontFamily="Century Gothic" 
                            FontSize="22"
                            HorizontalAlignment="Center"/>
@@ -102,10 +102,13 @@
                     </ListView>
                 </StackPanel>
                 <StackPanel Margin="20">
-                    <TextBlock Text="Ingredients" 
+                    <TextBlock Text="Cooking Process:" 
                            FontFamily="Century Gothic" 
                            FontSize="22"
                            HorizontalAlignment="Center"/>
+                    <ListView>
+                        
+                    </ListView>
                 </StackPanel>
             </StackPanel>
             <Button x:Name="backBtn" Width="126" Height="70" 
