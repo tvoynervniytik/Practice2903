@@ -85,12 +85,14 @@ namespace Practice2903.Pages
         private void priceSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             int a = (int)priceSl.Value;
-            priceminTb.Text = priceSl.Value.ToString();
+            MessageBox.Show(a.ToString());
+            //priceminTb.Text = a.ToString();
         }
         private void priceMSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            int a = (int)priceMSl.Value;
-            pricemaxTb.Text = priceMSl.Value.ToString();
+            //int a = (int)priceMSl.Value;
+            //pricemaxTb.Text = a.ToString();
         }
+        
     }
 }

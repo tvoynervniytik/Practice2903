@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,7 @@ namespace Practice2903.Pages
         public static List<Ingredient> ingredients { get; set; }
         public static List<Unit> units { get; set; }
         private static Dish dishe { get; set; }
+        int counter = 1;
         public RecipesPage(Dish dish)
         {
             InitializeComponent();
@@ -44,6 +46,7 @@ namespace Practice2903.Pages
             //    MessageBox.Show(cookingStagesIdes[index].ToString());
             //    index++;
             //}
+            ingredientOfStages = new List<IngredientOfStage>(DBConnection.practice.IngredientOfStage.ToList());
             //ingredientOfStages = new List<IngredientOfStage>(DBConnection.practice.IngredientOfStage.Where(i => cookingStagesIdes.Contains((int)i.CookingStageId)).ToList());
             //int[,] ingredientsIdes = new int[ingredientOfStages.Count, ingredientOfStages.Count];
             //index = 0;
@@ -70,7 +73,9 @@ namespace Practice2903.Pages
             cookingTb.Text = time.ToString();
             descTb.Text = dish.Description;
             servTb.Text = "1"; 
-            costTb.Text = dish.FinalPriceInCents.ToString();
+            costTb.Text = Convert.ToString(dishe.CookingStage.SelectMany(i => i.IngredientOfStage).Sum(i => i.Quantity * i.Ingredient.CostInCents)) + " $";
+
+            IngredientLv.ItemsSource = dishe.CookingStage.SelectMany(i => i.IngredientOfStage).ToList();
 
             this.DataContext = this;
 
@@ -78,19 +83,58 @@ namespace Practice2903.Pages
 
         private void plusBt_Click(object sender, RoutedEventArgs e)
         {
-            servTb.Text = (int.Parse(servTb.Text) + 1).ToString();
-            costTb.Text = (dishe.FinalPriceInCents * int.Parse(servTb.Text)).ToString();
+            if (dishe.BaseServingsQuantity == 99)
+                return;
+            counter++;
+            Refresh();
         }
 
         private void minBt_Click(object sender, RoutedEventArgs e)
         {
-            if (int.Parse(servTb.Text) == 0) MessageBox.Show("Нельзя уж меньше нуля, норм ты нет?.....", "Ответь, вот ты норм или нет", MessageBoxButton.OK, MessageBoxImage.Question);
-            else { servTb.Text = (int.Parse(servTb.Text) - 1).ToString(); costTb.Text = (dishe.FinalPriceInCents * int.Parse(servTb.Text)).ToString(); }
+            
+                if (dishe.BaseServingsQuantity == 0)
+            {
+                return;
             }
+                    
+                if (counter > 1)
+                {
+                    counter--;
+                }
+                Refresh();
+           
+        }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+        private void Refresh()
+        {
+            var t = dishe.CookingStage.SelectMany(s => s.IngredientOfStage).ToList();
+            var v = new List<IngredientOfStage>();
+            foreach (var i in t)
+            {
+                var w = v.Find(x => x.IngredientId == i.IngredientId);
+                if (w == null)
+                {
+                    i.SumQuantity = (double)i.Quantity;
+                    v.Add(i);
+                }
+                else
+                {
+                    w.SumQuantity += (double)i.Quantity;
+                }
+
+            }
+            for (int i = 0; i < v.Count; i++)
+            {
+                v[i].TotalQuantity = v[i].SumQuantity * counter;
+                v[i].TotalCost = v[i].Ingredient.PriceInDollars * v[i].TotalQuantity;
+            }
+            costTb.Text = $"{dishe.OurCost * counter}$";
+            IngredientLv.ItemsSource = v;
+            servTb.Text = (dishe.BaseServingsQuantity * counter).ToString();
         }
     }
 }

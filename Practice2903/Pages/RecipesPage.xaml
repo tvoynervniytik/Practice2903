@@ -9,21 +9,21 @@
       Title="RecipesPage">
 
     <Grid Background="#EFD3FF">
-        <StackPanel Margin="120 0 0 0" HorizontalAlignment="Center"
+        <StackPanel Margin="200 0 0 0" HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Recipe for " FontSize="60"
+                <TextBlock Text="Recipe for " FontSize="55"
                            FontWeight="Bold" Foreground="#FF234E"
                            FontFamily="Century Gothic"/>
-                <TextBlock x:Name="nameTb" FontSize="60"
+                <TextBlock x:Name="nameTb" FontSize="55"
                            FontWeight="Bold" Foreground="#FF234E"
                            FontFamily="Century Gothic"
                            TextWrapping="Wrap"
-                           Margin="0 0 0 30"/>
+                           Margin="0 0 0 10"/>
             </StackPanel>
             <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="15">
+                <StackPanel Margin="15 0">
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <TextBlock Text="Category: " 
                                    FontFamily="Century Gothic" 
@@ -74,9 +74,10 @@
                              FontFamily="Century Gothic" 
                              TextWrapping="Wrap"
                                
-                             Height="150" Width="700"
+                             Height="90" Width="800"
+                               Margin="0 0 30 0"
                              FontSize="18"/>
-            </StackPanel>
+                </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -85,14 +86,64 @@
                            FontFamily="Century Gothic" 
                            FontSize="22"
                            HorizontalAlignment="Center"/>
-                    <ListView ItemsSource="{Binding ingredientOfStages}">
+                    <ListView ItemsSource="{Binding ingredientOfStages}"
+                              Height="250"
+                              x:Name="IngredientLv">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                
+                                                <Border CornerRadius="20"
+                                                Name="Border"
+                                                Width="15"
+                                                Height="15"
+                                                BorderThickness="1"
+                                                BorderBrush="Black">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Color}" Value="False" >
+                                                                    <Setter Property="Background"
+                                                                Value="IndianRed"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Color}" Value="True" >
+                                                                    <Setter Property="Background"
+                                                                Value="ForestGreen"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Name" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Ingredient.Name}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Quantity" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Quantity}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Unit" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Ingredient.Unit.Name}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Cost" Width="100">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding TotalCost}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

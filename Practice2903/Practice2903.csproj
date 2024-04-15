@@ -115,6 +115,9 @@
     <Compile Include="DB\OrderedDish.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Service\Dish.cs" />
+    <Compile Include="DB\Service\Ingredient.cs" />
+    <Compile Include="DB\Service\IngredientOfStage.cs" />
     <Compile Include="DB\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
