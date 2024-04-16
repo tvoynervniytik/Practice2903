@@ -60,9 +60,12 @@ namespace Practice2903.Pages
         {
             var cat = categoryCb.SelectedItem as Category;
             string name = nameTb.Text;
-            dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name) && i.CategoryId == cat.Id).ToList());
+            if (categoryCb.SelectedItem == null)
+                dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name)).ToList());
+            else
+                dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name) && i.CategoryId == cat.Id).ToList());
         }
-        private void Hyperlink_Click_1(object sender, RoutedEventArgs e)
+            private void Hyperlink_Click_1(object sender, RoutedEventArgs e)
         {
             int count = avaibleIngs.Count; //кол-во элементов в Таблице sql
             int[] IdesDishes = new int[count]; //массив размера количества - массив с айдишниками блюд, где кол-ва ингредиентов не хватает
@@ -90,38 +93,38 @@ namespace Practice2903.Pages
         }
         private void priceSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {           
-            if (dishesSlv != null)
-            { 
-                priceMin = (int)priceSl.Value;
-                priceminTb.Text = priceSl.Value.ToString();
-                if (priceMin > priceMax)
-                {
-                    int max = priceMin;
-                    priceMin = priceMax;
-                    priceMax = max;
-                }
-                var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
-                                                                    && i.FinalPriceInCents <= priceMax).ToList());
-                dishesSlv.ItemsSource = sources;
-            }
+            //if (dishesSlv != null)
+            //{ 
+            //    priceMin = (int)priceSl.Value;
+            //    priceminTb.Text = priceSl.Value.ToString();
+            //    if (priceMin > priceMax)
+            //    {
+            //        int max = priceMin;
+            //        priceMin = priceMax;
+            //        priceMax = max;
+            //    }
+            //    var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
+            //                                                        && i.FinalPriceInCents <= priceMax).ToList());
+            //    dishesSlv.ItemsSource = sources;
+            //}
         }
         private void priceMSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
            
-            if (dishesSlv != null)
-            {
-                priceMax = (int)priceMSl.Value;
-                pricemaxTb.Text = priceMSl.Value.ToString();
-                if (priceMax < priceMin )
-                {
-                    int min = priceMax;
-                    priceMax = priceMin;
-                    priceMin = min;
-                }                
-                var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
-                                                            && i.FinalPriceInCents <= priceMax).ToList());
-                dishesSlv.ItemsSource = sources;              
-            }
+            //if (dishesSlv != null)
+            //{
+            //    priceMax = (int)priceMSl.Value;
+            //    pricemaxTb.Text = priceMSl.Value.ToString();
+            //    if (priceMax < priceMin )
+            //    {
+            //        int min = priceMax;
+            //        priceMax = priceMin;
+            //        priceMin = min;
+            //    }                
+            //    var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
+            //                                                && i.FinalPriceInCents <= priceMax).ToList());
+            //    dishesSlv.ItemsSource = sources;              
+            //}
         }
         
     }

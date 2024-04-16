@@ -42,26 +42,7 @@ namespace Practice2903.Pages
             Refresh();
             int index = 0;
             int count = cookingStages.Count;
-            //while (index < count)
-            //{
-            //    cookingStagesIdes[index] = cookingStages[index].Id;
-            //    MessageBox.Show(cookingStagesIdes[index].ToString());
-            //    index++;
-            //}
             ingredientOfStages = new List<IngredientOfStage>(DBConnection.practice.IngredientOfStage.ToList());
-            //ingredientOfStages = new List<IngredientOfStage>(DBConnection.practice.IngredientOfStage.Where(i => cookingStagesIdes.Contains((int)i.CookingStageId)).ToList());
-            //int[,] ingredientsIdes = new int[ingredientOfStages.Count, ingredientOfStages.Count];
-            //index = 0;
-            //count = ingredientOfStages.Count;
-            //while (index < count)
-            //{
-            //    //ingredientsIdes[index, index] = (int)ingredientOfStages[index].IngredientId;
-            //    //MessageBox.Show(ingredientsIdes[index].ToString());
-            //    //index++;
-            //}
-            //ingredients = new List<Ingredient>(DBConnection.practice.Ingredient.Where(i => ingredientsIdes.Contains(i.Id)).ToList());
-            //units = new List<Unit>(DBConnection.practice.Unit.ToList());
-
             nameTb.Text = dish.Name;
             var cat = categories.FirstOrDefault(i => i.Id == dish.CategoryId);
             categoryTb.Text = cat.Name;
@@ -73,14 +54,8 @@ namespace Practice2903.Pages
                 index++;
             }
             cookingTb.Text = time.ToString();
-            descTb.Text = dish.Description;
-            servTb.Text = "1"; 
-            costTb.Text = Convert.ToString(dishe.CookingStage.SelectMany(i => i.IngredientOfStage).Sum(i => i.Quantity * i.Ingredient.CostInCents)) + " $";
-
-            IngredientLv.ItemsSource = dishe.CookingStage.SelectMany(i => i.IngredientOfStage).ToList();
-
             this.DataContext = this;
-
+            Refresh();
         }
 
         private void plusBt_Click(object sender, RoutedEventArgs e)
@@ -109,10 +84,14 @@ namespace Practice2903.Pages
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new ListOfDishes());
         }
         private void Refresh()
         {
+            DataContext = null;
+            CookingStage.stepNumber = 1;
+            DataContext = dishe;
+            descTb.Text = dishe.Description;
             var t = dishe.CookingStage.SelectMany(s => s.IngredientOfStage).ToList();
             var v = new List<IngredientOfStage>();
             foreach (var i in t)
@@ -137,6 +116,7 @@ namespace Practice2903.Pages
             costTb.Text = $"{dishe.OurCost * counter}$";
             IngredientLv.ItemsSource = v;
             servTb.Text = (dishe.BaseServingsQuantity * counter).ToString();
+            LVRecipesStep.ItemsSource = dishe.CookingStage.ToList();
         }
     }
 }

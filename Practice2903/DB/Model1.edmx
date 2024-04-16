@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище PracticeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище PracticeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Practice.dbo.AvaibleIng" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="AvaibleIng">
@@ -60,6 +60,7 @@
           <Property Name="RecipeLink" Type="nvarchar" MaxLength="200" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="FinalPriceInCents" Type="int" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" />
         </EntityType>
         <EntityType Name="Ingredient">
           <Key>
@@ -269,8 +270,7 @@
             <End Role="OrderedDish" EntitySet="OrderedDish" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PracticeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -318,6 +318,7 @@
           <NavigationProperty Name="Category" Relationship="Self.FK_Dish_Category" FromRole="Dish" ToRole="Category" />
           <NavigationProperty Name="CookingStage" Relationship="Self.FK_CookingStage_Dish1" FromRole="Dish" ToRole="CookingStage" />
           <NavigationProperty Name="OrderedDish" Relationship="Self.FK_OrderedDish_Dish" FromRole="Dish" ToRole="OrderedDish" />
+          <Property Name="IsAvailable" Type="Boolean" />
         </EntityType>
         <EntityType Name="Ingredient">
           <Key>
@@ -580,6 +581,7 @@
           <EntitySetMapping Name="Dish">
             <EntityTypeMapping TypeName="PracticeModel.Dish">
               <MappingFragment StoreEntitySet="Dish">
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="BaseServingsQuantity" ColumnName="BaseServingsQuantity" />

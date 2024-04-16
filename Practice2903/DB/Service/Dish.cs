@@ -30,7 +30,7 @@ namespace Practice2903.DB
                 {
                     destinationFormat = "Bgra32";
                     IsAvailable = true;
-                    DBConnection.nyamNyam.SaveChanges();
+                    DBConnection.practice.SaveChanges();
                 }
                 return destinationFormat;
             }

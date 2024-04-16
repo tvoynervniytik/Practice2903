@@ -24,7 +24,8 @@
                           FontSize="32" 
                           FontFamily="Century Gothic"
                           Width="220" 
-                          Margin="10 0" SelectionChanged="categoryCb_SelectionChanged">
+                          Margin="10 0" 
+                          SelectionChanged="categoryCb_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" 
@@ -73,35 +74,35 @@
                     <StackPanel>
                         <TextBlock x:Name="priceminTb" Text="0"/>
                         <Slider Width="260" x:Name="priceSl"
-                                    Value="220" 
-                                    Minimum="220" Maximum="4440" 
-                                    SmallChange="1" LargeChange="10"
-                                    TickPlacement="BottomRight" 
-                                    IsSnapToTickEnabled="True" 
-                                    AutoToolTipPlacement="TopLeft" 
-                                    Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" 
-                                    ValueChanged="priceSl_ValueChanged"/>
+                                Value="220" 
+                                Minimum="220" Maximum="4440" 
+                                SmallChange="1" LargeChange="10"
+                                TickPlacement="BottomRight" 
+                                IsSnapToTickEnabled="True" 
+                                AutoToolTipPlacement="TopLeft" 
+                                 
+                                ValueChanged="priceSl_ValueChanged"/>
                         <TextBlock x:Name="pricemaxTb" Text="0"/> 
                         <Slider Width="260" x:Name="priceMSl"
-                                    Value="4440" 
-                                    Minimum="220" Maximum="4440" 
-                                    SmallChange="1" LargeChange="10"
-                                    TickPlacement="TopLeft"  
-                                    IsSnapToTickEnabled="True" 
-                                    AutoToolTipPlacement="TopLeft" 
-                                    Ticks="220, 460, 700, 720, 760, 870, 920, 1040, 1300, 1330, 1530, 1900, 2170, 2470, 4440" 
-                                    ValueChanged="priceMSl_ValueChanged"/>
+                                Value="4440" 
+                                Minimum="220" Maximum="4440" 
+                                SmallChange="1" LargeChange="10"
+                                TickPlacement="TopLeft"  
+                                IsSnapToTickEnabled="True" 
+                                AutoToolTipPlacement="TopLeft" 
+                                 
+                                ValueChanged="priceMSl_ValueChanged"/>
                         
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel>
                 <ListView ItemsSource="{Binding dishes}" 
-                      Height="350" 
-                      Width="800" 
-                      x:Name="dishesSlv"
-                      VerticalAlignment="Bottom" 
-                      SelectionChanged="dishesSlv_SelectionChanged">
+                          Height="350" 
+                          Width="800" 
+                          x:Name="dishesSlv"
+                          VerticalAlignment="Bottom" 
+                          SelectionChanged="dishesSlv_SelectionChanged">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Columns="3"/>
@@ -111,34 +112,34 @@
                         <DataTemplate>
                             <Grid>
                                 <Image Height="200"
-                                   Width="320"
-                                   RenderOptions.BitmapScalingMode="Fant"
-                                   Stretch="Fill">
+                                       Width="200"
+                                       RenderOptions.BitmapScalingMode="Fant"
+                                       Stretch="Fill">
                                     <Image.Source>
                                         <FormatConvertedBitmap Source="{Binding Image}"
-                                DestinationFormat="{Binding OpacityDish}" />
+                                                               DestinationFormat="{Binding OpacityDish}" />
                                     </Image.Source>
                                 </Image>
                                 <Border Background="Gray"
-                                    Opacity="0.7"
-                                    Height="100"
-                                    Width="320"
-                                    VerticalAlignment="Bottom">
+                                        Opacity="0.7"
+                                        Height="100"
+                                        Width="200"
+                                        VerticalAlignment="Bottom">
                                 </Border>
                                 <StackPanel Height="100"
-                                        Width="300"
+                                        Width="200"
                                         VerticalAlignment="Bottom"
                                         HorizontalAlignment="Center">
                                     <TextBlock Text="{Binding Name}"
                                            HorizontalAlignment="Center"
                                            FontSize="20"
                                            Foreground="AliceBlue"
-                                           TextWrapping="Wrap"
+                                           TextWrapping="Wrap" FontFamily="Century Gothic"
                                            TextAlignment="Center"/>
                                     <TextBlock Text="{Binding OurCost, StringFormat='1 portion = ${0}'}"
                                            HorizontalAlignment="Center"
                                            TextWrapping="Wrap"
-                                           FontSize="18"
+                                           FontSize="18" FontFamily="Century Gothic"
                                            Foreground="AliceBlue"/>
                                 </StackPanel>
                             </Grid>

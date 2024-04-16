@@ -19,11 +19,13 @@
                 <TextBlock FontSize="20" 
                            HorizontalAlignment="Right"
                            Text="Total available ingredients for the amount ($): "/>
-                <TextBlock x:Name="costTb"/>
+                <TextBlock x:Name="costTb" FontSize="20" FontFamily="Century Gothic"
+                           FontWeight="Bold"/>
             </StackPanel>
             <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       x:Name="LVIngredients"
                       Width="auto"
+                      Height="500"
                       d:ItemsSource="{d:SampleData ItemCount=9}"
                       Grid.Row="1"
                       BorderThickness="0"

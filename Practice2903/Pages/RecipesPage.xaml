@@ -12,10 +12,10 @@
         <StackPanel Margin="200 0 0 0" HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Recipe for " FontSize="55"
+                <TextBlock Text="Recipe for " FontSize="45"
                            FontWeight="Bold" Foreground="#FF234E"
                            FontFamily="Century Gothic"/>
-                <TextBlock x:Name="nameTb" FontSize="55"
+                <TextBlock x:Name="nameTb" FontSize="45"
                            FontWeight="Bold" Foreground="#FF234E"
                            FontFamily="Century Gothic"
                            TextWrapping="Wrap"
@@ -49,13 +49,13 @@
                         <TextBlock Text="Servings: " 
                                    FontFamily="Century Gothic" 
                                    FontSize="22"/>
-                            <Button x:Name="minBt" Height="60" Width="40"
+                            <Button x:Name="minBt" Height="46" Width="40"
                                     Content="-" FontSize="36" Click="minBt_Click" />
                             <TextBlock x:Name="servTb" Text="4"
                                        FontSize="28"
-                                       Height="60" Width="60" 
+                                       Height="46" Width="60" 
                                        TextAlignment="Center"/>
-                            <Button x:Name="plusBt" Height="60" Width="40"
+                            <Button x:Name="plusBt" Height="46" Width="40"
                                     Content="+" FontSize="36" Click="plusBt_Click"/>
                         </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
@@ -104,11 +104,11 @@
                                                     <Border.Style>
                                                         <Style TargetType="Border">
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Color}" Value="False" >
+                                                                <DataTrigger Binding="{Binding color}" Value="False" >
                                                                     <Setter Property="Background"
                                                                 Value="IndianRed"/>
                                                                 </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Color}" Value="True" >
+                                                                <DataTrigger Binding="{Binding color}" Value="True" >
                                                                     <Setter Property="Background"
                                                                 Value="ForestGreen"/>
                                                                 </DataTrigger>
@@ -157,13 +157,26 @@
                            FontFamily="Century Gothic" 
                            FontSize="22"
                            HorizontalAlignment="Center"/>
-                    <ListView ItemsSource="{Binding cookingStages}">
-                        
+                    <ListView x:Name="LVRecipesStep"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      BorderThickness="0"
+                          Height="250" Width="450"
+                      Background="Transparent">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Steps}"
+                                   TextWrapping="Wrap"
+                                   FontSize="18"
+                                   />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
+
                 </StackPanel>
             </StackPanel>
             <Button x:Name="backBtn" Width="126" Height="70" 
-                    Content="← Back" FontSize="25" FontWeight="Bold" Click="backBtn_Click"/>
+                    Content="← Back" FontSize="25" FontWeight="Bold" 
+                    Click="backBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
