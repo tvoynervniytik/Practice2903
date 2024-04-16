@@ -17,12 +17,102 @@
                        Margin="0 0 0 30"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="20" 
-                       HorizontalAlignment="Right"
-                       Text="Total available ingredients for the amount ($): "/>
+                           HorizontalAlignment="Right"
+                           Text="Total available ingredients for the amount ($): "/>
                 <TextBlock x:Name="costTb"/>
             </StackPanel>
-            <ListView ItemsSource="{Binding ingredients}">
-                
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      x:Name="LVIngredients"
+                      Width="auto"
+                      d:ItemsSource="{d:SampleData ItemCount=9}"
+                      Grid.Row="1"
+                      BorderThickness="0"
+                      Background="#EFD3FF">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1"
+                                BorderBrush="#FF234E"
+                                Width="320"
+                                Height="120">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Image}"></Image>
+                                <Rectangle Fill="Black" Opacity="0.5"></Rectangle>
+                                <StackPanel Margin="0,0,10,0"
+                                            Grid.Column="0">
+                                    <TextBlock Text="{Binding Name}"
+                                               FontWeight="Bold"
+                                               FontSize="16" 
+                                               TextWrapping="Wrap"
+                                               Foreground="WhiteSmoke"
+                                               Margin="5 20 0 0"/>
+                                    <TextBlock Foreground="WhiteSmoke"
+                                               Text="{Binding PriceInDollars, StringFormat='Price: ${0}'}"
+                                               FontSize="14" 
+                                               Margin="5 0 0 0"/>
+                                    <TextBlock FontSize="14">
+                                    <Hyperlink Foreground="DarkRed"
+                                               x:Name="HLDelete">
+                                       <TextBlock Text="Delete" Margin="5 0 0 0"/>
+                                    </Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            Margin="10 0 0 0"  >
+                                    <TextBox x:Name="TBСount"
+                                             Text="{Binding AvailableCount, UpdateSourceTrigger=PropertyChanged}"
+                                             VerticalAlignment="Center"
+                                             Width="30"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalContentAlignment="Center"
+                                             MaxLength="2"
+                                             Margin="0,0,5,0"
+                                             FontSize="14"
+                                             PreviewTextInput="TBСount_PreviewTextInput"
+                                             TextChanged="TBСount_TextChanged" 
+                                             IsEnabled="False"/>
+                                    <TextBlock Text="{Binding Unit.ShortName}"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,10,0"
+                                               FontSize="14" 
+                                               Width="30"/>
+                                </StackPanel>
+
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right"
+                                        Grid.Column="2">
+                                    <Button x:Name="BPlus"
+                                            Content="+"
+                                            Click="BPlus_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="0 0 0 5"
+                                            FontSize="14" 
+                                            Background="#fdb249"/>
+                                    <Button x:Name="BMinus"
+                                            Content="-"
+                                            Width="30"
+                                            Height="30"
+                                            Click="BMinus_Click"
+                                            FontSize="14" 
+                                            Background="#fdb249"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
             </ListView>
         </StackPanel>
     </Grid>
