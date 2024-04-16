@@ -56,7 +56,6 @@ namespace Practice2903.Pages
             else
                 dishesSlv.ItemsSource = new List<Dish>(DBConnection.practice.Dish.Where(i => i.Name.StartsWith(name) && i.CategoryId == cat.Id).ToList());
         }
-
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var cat = categoryCb.SelectedItem as Category;
@@ -90,27 +89,20 @@ namespace Practice2903.Pages
             NavigationService.Navigate(new RecipesPage(dishesSlv.SelectedItem as Dish));
         }
         private void priceSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-           
+        {           
             if (dishesSlv != null)
-            {
-
-                if (priceMin >= priceMax)
+            { 
+                priceMin = (int)priceSl.Value;
+                priceminTb.Text = priceSl.Value.ToString();
+                if (priceMin > priceMax)
                 {
-                    priceSl.Value = priceMin;
-                    priceminTb.Text = priceMin.ToString();
-                    MessageBox.Show("minno");
-                    
+                    int max = priceMin;
+                    priceMin = priceMax;
+                    priceMax = max;
                 }
-                else
-                {
-                    priceMin = (int)priceSl.Value;
-                    priceminTb.Text = priceMin.ToString();
-                    var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
+                var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
                                                                     && i.FinalPriceInCents <= priceMax).ToList());
-                    dishesSlv.ItemsSource = sources;
-                }
-                
+                dishesSlv.ItemsSource = sources;
             }
         }
         private void priceMSl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -118,23 +110,17 @@ namespace Practice2903.Pages
            
             if (dishesSlv != null)
             {
-                
-                if (priceMax <= priceMin )
+                priceMax = (int)priceMSl.Value;
+                pricemaxTb.Text = priceMSl.Value.ToString();
+                if (priceMax < priceMin )
                 {
-                    priceMSl.Value = priceMax;
-                    pricemaxTb.Text = priceMax.ToString();
-                    MessageBox.Show("no");
-                }
-                else
-                {
-                    priceMax = (int)priceMSl.Value;
-                    pricemaxTb.Text = priceMax.ToString();
-                    var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
-                                                                && i.FinalPriceInCents <= priceMax).ToList());
-                    dishesSlv.ItemsSource = sources;
-                }
-                
-               
+                    int min = priceMax;
+                    priceMax = priceMin;
+                    priceMin = min;
+                }                
+                var sources = new List<Dish>(DBConnection.practice.Dish.Where(i => i.FinalPriceInCents >= priceMin
+                                                            && i.FinalPriceInCents <= priceMax).ToList());
+                dishesSlv.ItemsSource = sources;              
             }
         }
         

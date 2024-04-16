@@ -8,6 +8,33 @@ namespace Practice2903.DB
 {
     public partial class Dish
     {
+        public string OpacityDish
+        {
+            get
+            {
+                var destinationFormat = string.Empty;
+                var allIngredientRecipeSteps = this.CookingStage.SelectMany(x => x.IngredientOfStage);
+                if (allIngredientRecipeSteps.Any())
+                {
+                    foreach (var ingredientStep in allIngredientRecipeSteps)
+                    {
+                        if (allIngredientRecipeSteps.Where(x => x.IngredientId == ingredientStep.IngredientId).Sum(x => x.Quantity) > ingredientStep.Ingredient.AvailableCount)
+                        {
+                            destinationFormat = "Gray32Float";
+                            IsAvailable = false;
+                            DBConnection.practice.SaveChanges();
+                        }
+                    }
+                }
+                else
+                {
+                    destinationFormat = "Bgra32";
+                    IsAvailable = true;
+                    DBConnection.nyamNyam.SaveChanges();
+                }
+                return destinationFormat;
+            }
+        }
         public double OurCost
         {
             get
